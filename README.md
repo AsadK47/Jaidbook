@@ -34,3 +34,16 @@ First, clone this repository. Then:
 ![](assets/README-4c144c6b.jpg)
 
 ![](assets/README-f82fa3f2.jpg)
+
+## Installation instructions
+
+```
+bundle install
+bin/rails db:create
+bin/rails db:migrate
+```
+
+```
+bundle exec rspec # Run the tests to ensure it works
+bin/rails server # Start the server at localhost:3000
+```
