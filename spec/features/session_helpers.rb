@@ -9,9 +9,8 @@
     end
 
     def sign_in
-      sign_up
       visit new_user_session_path
       fill_in 'Email', with: "test@test.com"
       fill_in 'Password', with: "testtest"
-      click_button 'Sign in'
+      click_button 'Log in'
     end
