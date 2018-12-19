@@ -65,4 +65,16 @@ RSpec.feature "Timeline", type: :feature do
     expect(page).to have_content "Other title"
     expect(page).to have_content "Other body"
   end
+
+  scenario "Can delete a post" do
+    visit "/"
+    click_link "Create Post"
+    add_post
+    click_link "Home"
+    click_link "Read More"
+    click_link "Delete"
+    visit "/"
+    expect(page).not_to have_content("Some title")
+    expect(page).not_to have_content("Some body")
+  end
 end
