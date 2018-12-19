@@ -1,4 +1,17 @@
 language: ruby
+cache:
+- bundler
 rvm:
- - 2.5
- - jruby
+- 2.5.3
+- jruby
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
+deploy:
+  provider: heroku
+  api_key:
+    secure: "FUpnRNPEmbBBmIWVwUAj30zI1X1SvVf6lOierTzHGKECQm5Y6yzzshJSR+ZVKNJNqpeM3kC/DlI9DeTRfMhwwGcMmEgkzRTFgDspPA9ix4GnPcbt/LgDqu87Byi/Q1A0dkoxsDcIAPz1x9ZKT/Dw2gxWcL4AYQiPzx8wxO1eOyftZgsXAzZPuqDngOWTibTDz+xB8s8+4qNhI7dYvVlEfG6Wvcwo+CfyNM0B6u3fVC29n74MHFDayoVurlqh3ysDbLnyfEVkpv1QaCdNAaSWnMX3h3PvwvqIPZu1KsJHcEndFa95DL6y2mrIwKNo0B9ZnjlWTr+djjYU7F702cmSgNeNy2EZZrbrW0BHm8N9gnil12isWiHiPO80kJ6GHbZJAx63K3rJJKAeRZXOGFcViuMj0k3wp5ayE0UvkwZ3i5aihQeWS39mzDwxwZlHOwMoutIsPo9jwCPDC68uf7wx7kGZ732FmraaRXr8BYZiMo3qGW8C7stXqVrryYidSUXds5jE13RdkvrJRNd/WxJFlbqnxyHiMNKKuO8oa4CdQNQ+kildG13P703+wrYymabujytoWeGSHjifZ00p/ltCG5eqgxsnGhDFg3n/QOV/pIbN7Ty16l1dS9d23l93NSj8s6hZLjR1uACbEz6Ur4frC/4lYiB9ne1AkGz/ktlZlTQ="
+  app: rails-test-app-article
+  on:
+    repo: AsadK47/Jaidbook
