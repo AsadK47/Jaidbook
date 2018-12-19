@@ -15,18 +15,6 @@ https://trello.com/b/Fp0JIOMP/acebook-planning-team-jaid
 
 [You can find the engineering project outline here.](https://github.com/makersacademy/course/tree/master/engineering_projects/rails)
 
-## Quickstart
-
-First, clone this repository. Then:
-
-```bash
-> bundle install
-> bin/rails db:create
-> bin/rails db:migrate
-
-> bundle exec rspec # Run the tests to ensure it works
-> bin/rails server # Start the server at localhost:3000
-```
 ## Class Diagram
 
 ![](assets/README-3814a64d.jpg)
