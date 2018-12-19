@@ -47,6 +47,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', '~> 0.61.1'
+  gem 'factory_bot'
+  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'rails-controller-testing'
 end
 
 group :development do
