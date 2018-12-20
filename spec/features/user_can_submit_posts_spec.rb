@@ -22,7 +22,6 @@ RSpec.feature "Timeline", type: :feature do
     click_link "Create Post"
     add_post
     click_link "Home"
-    visit "/"
     expect(page).to have_content("Some title")
     expect(page).to have_content("Some body")
   end
@@ -32,9 +31,7 @@ RSpec.feature "Timeline", type: :feature do
     click_link "Create Post"
     add_post
     click_link "Home"
-    visit "/"
     click_link "Read More"
-    visit "/posts/1"
     expect(page).to have_content("Some title")
     expect(page).to have_content("Some body")
   end
@@ -46,11 +43,9 @@ RSpec.feature "Timeline", type: :feature do
     click_link "Home"
     click_link "Read More"
     click_link "Edit"
-    visit "/posts/1/edit"
     fill_in "Title", with: "Other title"
     fill_in "Body", with: "Other body"
     click_button "Save Post"
-    visit "/posts/1"
     expect(page).to have_content "Other title"
     expect(page).to have_content "Other body"
   end
@@ -62,7 +57,6 @@ RSpec.feature "Timeline", type: :feature do
     click_link "Home"
     click_link "Read More"
     click_link "Delete"
-    visit "/"
     expect(page).not_to have_content("Some title")
     expect(page).not_to have_content("Some body")
   end
