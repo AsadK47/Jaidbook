@@ -13,21 +13,19 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><h1>Jaidbook</h1></a>
+        <a class="navbar-brand" href="/"><h1>Jaidbook</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" <%= link_to "Home", home_path %> </a></li>
             <li><a class="nav-link" <%= link_to "Create Post", new_post_path %> </a></li>
 
             <% if user_signed_in? %>
-            
+                <li><a class="nav-link"<%= link_to current_user.email, profile_path(current_user.email), :class => 'navbar-link' %></a></li>
                 <li><a class="nav-link"<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></a></li>
                 <li><a class="nav-link"<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></a></li>
-                <span class="nav-link">Logged in as <strong><%= current_user.email %></strong></span>
             <% else %>
                 <li><a class="nav-link"<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></a></li>
                 <li><a class="nav-link"<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></a></li>

@@ -1,0 +1,16 @@
+
+<% if @posts != nil %>
+<h1>Your posts</h1>
+  <% @posts.each do |post| %>
+    <div class="well">
+      <h3><%= post.title %></h3>
+      <p><%= post.body %></p>
+      <p><%= post.email %></p>
+      <%= link_to "Read More", post_path(post), :class => 'btn btn-default' %>
+    </div>
+  <% end %>
+<% else %>
+  <h2>No posts yet :/</h2>
+  <br>
+  <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
+<% end %>
