@@ -21,7 +21,6 @@
       fill_in "Title", with: "Some title"
       fill_in "Body", with: "Some body"
       click_button "Save Post"
-      visit "/posts/1" # Should this be redirected to ID instead of hardcoding 1?
       expect(page).to have_content("Some title")
       expect(page).to have_content("Some body")
     end
