@@ -26,9 +26,12 @@ https://trello.com/b/Fp0JIOMP/acebook-planning-team-jaid
 ## Installation instructions
 
 ```
+clone repo
+cd into Jaidbook
 bundle install
-bin/rails db:create
-bin/rails db:migrate
+createdb pg_jaid_dev
+createdb pg_jaid_test
+rake db:schema:load
 ```
 
 ```
