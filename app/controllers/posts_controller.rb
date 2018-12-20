@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!, except: :index
+  before_action :find_post, except: [:index, :new, :create]
 
   def index
     @posts = Post.all
   end
 
   def show
-    find_post
   end
 
   def new
@@ -20,16 +20,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    find_post
   end
 
   def update
-    find_post
     if(@post.update(post_params)) then redirect_to @post else render 'edit' end
   end
 
   def destroy
-    find_post
     @post.destroy
     redirect_to posts_path
   end
