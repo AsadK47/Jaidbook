@@ -12,17 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2018_12_21_141921) do
 
-# ActiveRecord::Schema.define(version: 2018_12_21_121646) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-
-  create_table "friendships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
 
   create_table "comments", force: :cascade do |t|
     t.string "user"
@@ -31,6 +22,13 @@ ActiveRecord::Schema.define(version: 2018_12_21_141921) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
