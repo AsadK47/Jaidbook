@@ -15,7 +15,7 @@
     <% @posts.each do |post| %>
         <div class='each-post'>
           <h3><%= post.title %></h3>
-          <p><%= post.body %></p>
+          <p><%= truncate(post.body) %></p>
           <p><%= post.email %> at <%= post.created_at %></p>
           <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
         </div>
