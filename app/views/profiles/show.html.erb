@@ -1,12 +1,21 @@
 
+<div class='user-info'>
+  <h1 class='title'><%= current_user.email%></h1>
+    <div class='user-buttons'>
+      <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
+      <a <%= link_to "Create Post", new_post_path, :class => 'btn btn-success' %> </a>
+    </div>
+</div>
+
 <% if @posts != nil %>
-<h1>Your posts</h1>
   <% @posts.each do |post| %>
-    <div class="well">
-      <h3><%= post.title %></h3>
-      <p><%= post.body %></p>
-      <p><%= post.email %></p>
-      <%= link_to "Read More", post_path(post), :class => 'btn btn-default' %>
+    <div class="post-container">
+      <div class='each-post'>
+        <h3><%= post.title %></h3>
+        <p><%= post.body %></p>
+        <p><%= post.email %> at <%= post.created_at %></p>
+        <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+      </div>
     </div>
   <% end %>
 <% else %>
@@ -14,3 +23,31 @@
   <br>
   <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
 <% end %>
+
+
+<style>
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    h1.title {
+      font-family: arial;
+      font-size: 50px;
+      color: #343a40;
+      padding: 20px;
+    }
+    div.post-container {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      border-radius: 10px;
+      background-color: lightgrey;
+    }
+    div.each-post {
+      margin: 20px;
+    }
+  </style>
