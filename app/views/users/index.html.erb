@@ -5,7 +5,7 @@
     <h3><%= user.email %></h3>
     <p>Joind on: <%= user.created_at %></p>
     <a><%= link_to "Add Friend", new_post_path, :class => 'btn btn-success' %></a>
-    <a><%= link_to "View Profile", new_post_path, :class => 'btn btn-info' %></a>
+    <a><%= link_to "View Profile", profile_path(user.email), :class => 'btn btn-info' %></a>
   </div>
 <% end %>
 
