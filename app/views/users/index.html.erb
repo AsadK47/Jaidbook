@@ -1,0 +1,35 @@
+<h1 class='title'>All Users</h1>
+<% @users = User.all %>
+<% @users.each do |user| %>
+  <div class='each-post'>
+    <h3><%= user.email %></h3>
+    <p>Joind on: <%= user.created_at %></p>
+    <a><%= link_to "Add Friend", new_post_path, :class => 'btn btn-success' %></a>
+    <a><%= link_to "View Profile", new_post_path, :class => 'btn btn-info' %></a>
+  </div>
+<% end %>
+
+
+<style>
+    h1.title {
+      font-family: arial;
+      font-size: 50px;
+      color: #343a40;
+      padding: 20px;
+    }
+    h3 {
+      font-family: arial;
+      color: #343a40;
+      font-weight: bold;
+    }
+    p {
+      font-family: arial;
+      color: #343a40;
+    }
+    div.each-post {
+      margin: 10px;
+      padding: 40px;
+      border-radius: 10px;
+      background-color: lightgrey;
+    }
+  </style>
