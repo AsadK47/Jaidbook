@@ -12,14 +12,25 @@
 
 ActiveRecord::Schema.define(version: 2018_12_21_141921) do
 
+# ActiveRecord::Schema.define(version: 2018_12_21_121646) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+  create_table "comments", force: :cascade do |t|
+    t.string "user"
+    t.text "body"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "posts", id: :serial, force: :cascade do |t|
@@ -46,4 +57,5 @@ ActiveRecord::Schema.define(version: 2018_12_21_141921) do
     t.index ["user_id"], name: "idx_16443_index_users_on_user_id"
   end
 
+  add_foreign_key "comments", "posts"
 end

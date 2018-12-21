@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   get ':email', to: 'profiles#show', as: :profile
   get 'users/all', to: 'users#index'
 
+  resources :posts do
+    resources :comments
+  end
+
 end
