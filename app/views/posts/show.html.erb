@@ -10,3 +10,28 @@
                                       method: :delete,
                                       data: { confirm: 'Are you sure?'},
                                       :class => 'btn btn-danger' %>
+
+<hr>
+
+<h5>Comments:</h5>
+
+<% @post.comments.each do |comment| %>
+  <div class="well">
+    <p>
+      <strong>Username</strong>: <%= comment.body %>
+    </p>
+  </div>
+<% end %>
+
+<h5>Add Comment:</h5>
+
+<%= form_for([@post, @post.comments.build]) do |form| %>
+
+  <p>
+    <%= form.text_area(:body, { :class => 'form-control' } ) %>
+  </p>
+
+  <p>
+    <%= form.submit({:class => 'btn btn-success'}) %>
+  </p>
+<% end %>

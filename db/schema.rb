@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_145630) do
+ActiveRecord::Schema.define(version: 2018_12_21_121646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts", id: :serial, default: nil, force: true do |t|
+  create_table "comments", force: :cascade do |t|
+    t.string "user"
+    t.text "body"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "posts", id: :serial, force: :cascade do |t|
     t.text "title"
     t.text "body"
     t.datetime "created_at"
@@ -25,8 +34,8 @@ ActiveRecord::Schema.define(version: 2018_12_19_145630) do
     t.index ["user_id"], name: "idx_16451_index_posts_on_user_id"
   end
 
-  create_table "users", id: :serial, default: nil, force: true do |t|
-    t.text "email", default: "" 
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.text "email", default: ""
     t.text "encrypted_password", default: ""
     t.text "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -39,4 +48,5 @@ ActiveRecord::Schema.define(version: 2018_12_19_145630) do
     t.index ["user_id"], name: "idx_16443_index_users_on_user_id"
   end
 
+  add_foreign_key "comments", "posts"
 end
