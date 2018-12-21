@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   get ':email', to: 'profiles#show', as: :profile
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 end
