@@ -7,31 +7,62 @@
     </div>
 </div>
 
-<% if @posts != nil %>
-  <% @posts.each do |post| %>
-    <div class="post-container">
-      <div class='each-post'>
-        <h3><%= post.title %></h3>
-        <p><%= post.body %></p>
-        <p><%= post.email %> at <%= post.created_at %></p>
-        <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-      </div>
-    </div>
+
+<div class ='profile-container'>
+
+  <div class='logic'>
+    <h3>Your Posts</h3>
+  <% if @posts != nil %>
+    <% @posts.each do |post| %>
+        <div class='each-post'>
+          <h3><%= post.title %></h3>
+          <p><%= post.body %></p>
+          <p><%= post.email %> at <%= post.created_at %></p>
+          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+        </div>
+    <% end %>
+  <% else %>
+    <h2>No posts yet :/</h2>
+    <br>
+    <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
   <% end %>
-<% else %>
-  <h2>No posts yet :/</h2>
-  <br>
-  <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
-<% end %>
+  </div>
+
+  <div class='logic'>
+      <h3>Your Friends</h3>
+    <% if @freinds != nil %>
+      <% @friends.each do |friend| %>
+          <div class='each-post'>
+            <h3><%= friend.email %></h3>
+            <p> Joined on <%= friend.created_at %></p>
+            <a><%= link_to "View Profile", post_path(post), :class => 'btn btn-success' %></a>
+        </div>
+      <% end %>
+    <% else %>
+      <div class='each-post'>
+        <h3>No friends yet :/</h3>
+        <br>
+        <a <%= link_to "Add a friend!", new_post_path, :class => 'btn btn-success' %> </a>
+      </div>
+    <% end %>
+  </div>
+
+</div>
 
 
 <style>
-    .user-info {
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 40px;
+  }
+    .profile-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
       justify-content: center;
-      padding: 20px;
     }
     h1.title {
       font-family: arial;
@@ -39,15 +70,24 @@
       color: #343a40;
       padding: 20px;
     }
-    div.post-container {
-      margin: 20px;
+    h3 {
+      font-family: arial;
+      color: #343a40;
+      font-weight: bold;
+    }
+    p {
+      font-family: arial;
+      color: #343a40;
+    }
+    .logic {
       display: flex;
+      align-items: center;
       flex-direction: column;
-      justify-content: left;
-      border-radius: 10px;
-      background-color: lightgrey;
     }
     div.each-post {
-      margin: 20px;
+      margin: 10px;
+      padding: 40px;
+      border-radius: 10px;
+      background-color: lightgrey;
     }
   </style>
