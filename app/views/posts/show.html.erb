@@ -31,7 +31,7 @@
 <%= form_for([@post, @post.comments.build]) do |form| %>
 
   <p>
-    <%= form.text_area(:body, { :class => 'form-control' } ) %>
+    <%= form.text_area(:body, { :id => 'comment', :class => 'form-control' } ) %>
   </p>
 
   <p>

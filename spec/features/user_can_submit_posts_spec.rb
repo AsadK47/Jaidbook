@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Timeline", type: :feature do
   scenario "Shows Jaidbook Posts" do
     visit "/"
-    expect(page).to have_content("Jaidbook Posts")
+    expect(page).to have_content("Jaidbook")
   end
 
   scenario "Adds new posts" do
