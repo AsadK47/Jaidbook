@@ -3,7 +3,7 @@
   <h1 class='title'><%= current_user.email%></h1>
     <div class='user-buttons'>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
-      <a <%= link_to "Create Post", new_post_path, :class => 'btn btn-success' %> </a>
+      <a <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %> </a>
     </div>
 </div>
 
@@ -50,6 +50,9 @@
 
 
 <style>
+  .user-post {
+
+  }
   .user-info {
     display: flex;
     flex-direction: column;

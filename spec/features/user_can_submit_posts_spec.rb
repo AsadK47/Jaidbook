@@ -13,7 +13,7 @@ RSpec.feature "Timeline", type: :feature do
 
   scenario "Shows post after creating a new post" do
     visit_homepage_sign_up_and_sign_in
-    click_link "Create Post"
+    click_link "New Post"
     add_post
     find('#home').click
     expect(page).to have_content("Some title")
