@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   validates :title, presence: true
-  validates :title, length: {minimum: 3}
+  validates :title, length: { minimum: 3 }
   belongs_to :user
-  has_many :comments            
+  has_many :comments
 end

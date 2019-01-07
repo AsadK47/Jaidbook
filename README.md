@@ -1,5 +1,11 @@
 # Jaidbook
 
+## Status
+[![Build Status](https://travis-ci.org/AsadK47/Jaidbook.svg?branch=master)](https://travis-ci.org/AsadK47/Jaidbook)
+
+## Heroku Link
+https://jaidbook.herokuapp.com/
+
 ## Members
 - [Asad Khan](https://github.com/AsadK47)
 - [Darryl Banks](https://github.com/zombie9)
