@@ -4,11 +4,14 @@ cache:
 rvm:
 - 2.5.3
 - jruby
+env:
+- DB=postgresql
+script:
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec spec/
 before_script:
-- bundle exec rake db:create
-- bundle exec rake db:migrate
-- bundle exec rake assets:precompile
-- bin/rails db:migrate RAILS_ENV=development
+- psql -c 'create database my_app_test' -U postgres
 deploy:
   provider: heroku
   api_key:
