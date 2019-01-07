@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :posts
   # map.resources :friendships
 
-  root 'posts#index', as: 'home'
+  # root 'posts#index', as: 'home'
+  root 'profiles#show', as: 'home'
   get ':email', to: 'profiles#show', as: :profile
   get 'users/all', to: 'users#index'
 
