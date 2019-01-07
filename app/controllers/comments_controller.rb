@@ -1,5 +1,6 @@
-class CommentsController < ApplicationController
+# frozen_string_literal: true
 
+class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(merge_params)
@@ -22,5 +23,4 @@ class CommentsController < ApplicationController
   def merge_params
     comment_params.merge(user: current_user.email)
   end
-
 end

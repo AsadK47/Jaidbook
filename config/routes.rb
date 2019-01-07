@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   # get 'profiles/show'
   devise_for :users
   resources :posts
@@ -12,5 +13,4 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-
 end

@@ -1,14 +1,14 @@
-class PostsController < ApplicationController
+# frozen_string_literal: true
 
+class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :find_post, except: [:index, :new, :create]
+  before_action :find_post, except: %i[index new create]
 
   def index
     @posts = Post.all.order('posts.created_at DESC')
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -16,14 +16,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(merge_params)
-    if(@post.save) then redirect_to @post else render 'new' end
+    @post.save ? (redirect_to @post) : (render 'new')
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if(@post.update(post_params)) then redirect_to @post else render 'edit' end
+    @post.update(post_params) ? (redirect_to @post) : (render 'edit')
   end
 
   def destroy
@@ -44,6 +43,4 @@ class PostsController < ApplicationController
   def find_post
     @post = Post.find(params[:id])
   end
-
-
 end
