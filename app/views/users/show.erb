@@ -1,11 +1,14 @@
 <div class='user-info'>
   <h1 class='title'><%= @user.email%></h1>
     <div class='user-buttons'>
+      <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
       <a <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %> </a>
+        <% else %>
+      <a <%= link_to "Post on #{@user.email}'s wall", new_post_path, :class => 'btn btn-success' %></a>
+      <% end %>
     </div>
 </div>
-
 
 <div class ='profile-container'>
   <div class='logic'>
