@@ -3,11 +3,23 @@
     <div class='user-buttons'>
       <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
-      <a <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %> </a>
-        <% else %>
-      <a <%= link_to "Post on #{@user.email}'s wall", new_post_path, :class => 'btn btn-success' %></a>
       <% end %>
     </div>
+
+</div>
+<div class="user-tabs">
+<a class="tab active" href="">
+  <i class="fa fa-th"></i>
+  WALL
+</a>
+<a class="tab" href="">
+  <i class="fa fa-tv"></i>
+  POSTS
+</a>
+<a class="tab" href="">
+  <i class="fa fa-bookmark"></i>
+  FRIENDS
+</a>
 </div>
 
 <div class ='profile-container'>
@@ -43,30 +55,57 @@
     <div class='each-post'>
       <h3>No friends yet :/</h3>
       <br>
-      <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
+      <a <%= link_to "Add friends", users_all_path, :class => 'btn btn-success' %> </a>
     </div>
     <% end %>
   </div>
+
+<% if current_user.id != @user.id %>
   <div class='each-post'>
     <h3>Post on your friend's wall:</h3>
     <br>
-    <%= form_for :email, url: posts_path do |f| %>
+    <%= form_for :post, url: posts_path do |f| %>
     <p>
       <%= f.label :title %><br>
       <%= f.text_field(:title, { :class => 'form-control' } ) %>
     </p>
-
     <p>
       <%= f.label :body %><br>
       <%= f.text_area(:body, { :class => 'form-control' } ) %>
     </p>
-
     <p>
       <%= f.submit({:class => 'btn btn-success'}) %>
     </p>
+    <p>
+      <% f.hidden_field :posted_to, @user.id %>
     <% end %>
+  <% end %>
   </div>
+
+  <div class='logic'>
+    <h3>Wall</h3>
+  <% if @posts != nil %>
+    <% @posts.each do |post| %>
+        <% if post.posted_to == @user.id %>
+        <div class='each-post'>
+          <h3><%= post.title %></h3>
+          <p><%= truncate(post.body) %></p>
+          <p><%= post.email %> at <%= post.created_at %></p>
+          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+        </div>
+        <% end %>
+    <% end %>
+  <% end %>
+  </div>
+
+
+
+
+
+
+
 </div>
+
 <style>
   .user-post {
 
