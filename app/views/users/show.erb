@@ -1,6 +1,5 @@
-
 <div class='user-info'>
-  <h1 class='title'><%= current_user.email%></h1>
+  <h1 class='title'><%= @user.email%></h1>
     <div class='user-buttons'>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
       <a <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %> </a>
@@ -39,11 +38,10 @@
       <% end %>
     <% else %>
     <div class='each-post'>
-            <h3>No friends yet :/</h3>
-            <br>
-            <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
-
-          </div>
+      <h3>No friends yet :/</h3>
+      <br>
+      <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
+    </div>
     <% end %>
   </div>
 </div>
