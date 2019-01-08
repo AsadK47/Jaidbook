@@ -44,7 +44,27 @@
         <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
 
       </div>
-    <% end %>
+
+      <div>
+        <h3>Post on your friend's wall:</h3>
+        <br>
+        <%= form_for :email, url: posts_path do |f| %>
+        <p>
+          <%= f.label :title %><br>
+          <%= f.text_field(:title, { :class => 'form-control' } ) %>
+        </p>
+
+        <p>
+          <%= f.label :body %><br>
+          <%= f.text_area(:body, { :class => 'form-control' } ) %>
+        </p>
+
+        <p>
+          <%= f.submit({:class => 'btn btn-success'}) %>
+        </p>
+        <% end %>
+      </div>
+      <% end %>
   </div>
 </div>
 

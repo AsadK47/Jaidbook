@@ -7,5 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @posts = Post.find_all_by_wall(@user.id)
   end
 end
