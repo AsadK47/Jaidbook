@@ -1,16 +1,18 @@
-
 <div class='user-info'>
-  <h1 class='title'><%= current_user.email%></h1>
+  <h1 class='title'><%= @user.email%></h1>
     <div class='user-buttons'>
+      <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
       <a <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %> </a>
+        <% else %>
+      <a <%= link_to "Post on #{@user.email}'s wall", new_post_path, :class => 'btn btn-success' %></a>
+      <% end %>
     </div>
 </div>
 
-
 <div class ='profile-container'>
   <div class='logic'>
-    <h3>Your Posts</h3>
+    <h3>Posts</h3>
   <% if @posts != nil %>
     <% @posts.each do |post| %>
         <div class='each-post'>
@@ -28,7 +30,7 @@
   </div>
 
   <div class='logic'>
-      <h3>Your Friends</h3>
+      <h3>Friends</h3>
     <% if @freinds != nil %>
       <% @friends.each do |friend| %>
           <div class='each-post'>
@@ -39,11 +41,10 @@
       <% end %>
     <% else %>
     <div class='each-post'>
-            <h3>No friends yet :/</h3>
-            <br>
-            <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
-
-          </div>
+      <h3>No friends yet :/</h3>
+      <br>
+      <a <%= link_to "Add a friend!", users_all_path, :class => 'btn btn-success' %> </a>
+    </div>
     <% end %>
   </div>
 </div>
