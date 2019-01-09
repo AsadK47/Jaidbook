@@ -1,5 +1,15 @@
 <div class='user-info'>
   <h1 class='title'><%= @user.email%></h1>
+
+  <div class="field">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar.variant(resize: "100x100!"), class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag gravatar_image_url(current_user.email, size: 100), height: 100, width: 100, class: "rounded-circle" %>
+    <% end %>
+  </div>
+    <br>
+
     <div class='user-buttons'>
       <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
@@ -43,7 +53,7 @@
 
   <div class='logic'>
       <h3>Friends</h3>
-    <% if @freinds != nil %>
+    <% if @friends != nil %>
       <% @friends.each do |friend| %>
           <div class='each-post'>
             <h3><%= friend.email %></h3>

@@ -2,7 +2,7 @@
 
 ## Status
 [![Build Status](https://travis-ci.org/AsadK47/Jaidbook.svg?branch=master)](https://travis-ci.org/AsadK47/Jaidbook)
-![](assets/README-3910302c.png)
+![](assets/README-24a2f8f5.png)
 
 ## Heroku Link
 https://jaidbook.herokuapp.com/
