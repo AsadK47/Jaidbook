@@ -87,7 +87,7 @@
     <h3>Wall</h3>
   <% if @posts != nil %>
       <% @allposts.each do |post| %>
-        <% if post.posted_to == "1" %>
+        <% if post.posted_to == "#{@user.id}" %>
         <div class='each-post'>
           <h3><%= post.title %></h3>
           <p><%= truncate(post.body) %></p>
