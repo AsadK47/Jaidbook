@@ -77,7 +77,8 @@
       <%= f.submit({:class => 'btn btn-success'}) %>
     </p>
     <p>
-      <% f.hidden_field :posted_to, @user.id %>
+       <input type="hidden" name="posted_to" value="<%= @user.id %>" />
+    </p>
     <% end %>
   <% end %>
   </div>
@@ -85,8 +86,8 @@
   <div class='logic'>
     <h3>Wall</h3>
   <% if @posts != nil %>
-    <% @posts.each do |post| %>
-        <% if post.posted_to == @user.id %>
+      <% @allposts.each do |post| %>
+        <% if post.posted_to == "1" %>
         <div class='each-post'>
           <h3><%= post.title %></h3>
           <p><%= truncate(post.body) %></p>
@@ -97,13 +98,6 @@
     <% end %>
   <% end %>
   </div>
-
-
-
-
-
-
-
 </div>
 
 <style>

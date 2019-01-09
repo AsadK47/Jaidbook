@@ -33,11 +33,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id, :posted_to)
+    params.require(:post).permit(:title, :body, :user_id)
   end
 
   def merge_params
-    post_params.merge(user_id: current_user.id, email: current_user.email)
+    post_params.merge(user_id: current_user.id, email: current_user.email, posted_to: params[:posted_to])
   end
 
   def find_post
