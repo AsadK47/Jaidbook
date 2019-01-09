@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def merge_params
-    post_params.merge(user_id: current_user.id, email: current_user.email)
+    post_params.merge(user_id: current_user.id, email: current_user.email, posted_to: params[:posted_to])
   end
 
   def find_post
