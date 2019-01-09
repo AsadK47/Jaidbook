@@ -1,15 +1,5 @@
 <div class='user-info'>
   <h1 class='title'><%= @user.email%></h1>
-
-  <div class="field">
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar.variant(resize: "100x100!"), class: "rounded-circle" %>
-    <% else %>
-      <%= image_tag gravatar_image_url(current_user.email, size: 100), height: 100, width: 100, class: "rounded-circle" %>
-    <% end %>
-  </div>
-    <br>
-
     <div class='user-buttons'>
       <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
@@ -32,44 +22,6 @@
 </a>
 </div>
 
-<div class ='profile-container'>
-  <div class='logic'>
-    <h3>Posts</h3>
-  <% if @posts != nil %>
-    <% @posts.each do |post| %>
-        <div class='each-post'>
-          <h3><%= post.title %></h3>
-          <p><%= truncate(post.body) %></p>
-          <p><%= post.email %> at <%= post.created_at %></p>
-          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-        </div>
-    <% end %>
-  <% else %>
-    <h2>No posts yet :/</h2>
-    <br>
-    <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
-  <% end %>
-  </div>
-
-  <div class='logic'>
-      <h3>Friends</h3>
-    <% if @friends != nil %>
-      <% @friends.each do |friend| %>
-          <div class='each-post'>
-            <h3><%= friend.email %></h3>
-            <p> Joined on <%= friend.created_at %></p>
-            <a><%= link_to "View Profile", post_path(post), :class => 'btn btn-success' %></a>
-        </div>
-      <% end %>
-    <% else %>
-    <div class='each-post'>
-      <h3>No friends yet :/</h3>
-      <br>
-      <a <%= link_to "Add friends", users_all_path, :class => 'btn btn-success' %> </a>
-    </div>
-    <% end %>
-  </div>
-
 <% if current_user.id != @user.id %>
   <div class='each-post'>
     <h3>Post on your friend's wall:</h3>
@@ -91,6 +43,44 @@
     </p>
     <% end %>
   <% end %>
+  </div>
+  
+<div class ='profile-container'>
+  <div class='logic'>
+    <h3>Posts</h3>
+  <% if @posts != nil %>
+    <% @posts.each do |post| %>
+        <div class='each-post'>
+          <h3><%= post.title %></h3>
+          <p><%= truncate(post.body) %></p>
+          <p><%= post.email %> at <%= post.created_at %></p>
+          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+        </div>
+    <% end %>
+  <% else %>
+    <h2>No posts yet :/</h2>
+    <br>
+    <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
+  <% end %>
+  </div>
+
+  <div class='logic'>
+      <h3>Friends</h3>
+    <% if @freinds != nil %>
+      <% @friends.each do |friend| %>
+          <div class='each-post'>
+            <h3><%= friend.email %></h3>
+            <p> Joined on <%= friend.created_at %></p>
+            <a><%= link_to "View Profile", post_path(post), :class => 'btn btn-success' %></a>
+        </div>
+      <% end %>
+    <% else %>
+    <div class='each-post'>
+      <h3>No friends yet :/</h3>
+      <br>
+      <a <%= link_to "Add friends", users_all_path, :class => 'btn btn-success' %> </a>
+    </div>
+    <% end %>
   </div>
 
   <div class='logic'>
