@@ -12,4 +12,5 @@ class ProfilesController < ApplicationController
   def find_post
   end
 
+
 end
