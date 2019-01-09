@@ -8,6 +8,8 @@ ruby '2.5.3'
 gem 'cancan'
 gem 'devise'
 gem 'pry'
+gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
+gem 'mini_magick', '~> 4.9', '>= 4.9.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

@@ -3,6 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :find_post, except: %i[index new create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
     @posts = Post.all.order('posts.created_at DESC')
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :avatar)
   end
 
   def merge_params
