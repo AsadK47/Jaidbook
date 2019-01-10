@@ -17,7 +17,7 @@
           <% end %>
           <br>
           <p><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-          <p>Posted by <strong><%= post.email %></strong> on <%= post.created_at.to_formatted_s(:short) %></p>
+          <p>Posted by <strong> <%= post.email %> </strong> on <%= post.created_at.to_formatted_s(:short) %></p>
         </div>
         <div class='button'>
           <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
