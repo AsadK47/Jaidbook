@@ -14,7 +14,7 @@
   <%= image_tag url_for(@post.image) %>
 <% end %>
 <p><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-<p>Posted at: <%= @post.created_at.to_formatted_s(:short) %></p>
+<p>Posted on: <%= @post.created_at.to_formatted_s(:short) %> </p>
 
 <hr>
 <% if @post.email == current_user.email %>
