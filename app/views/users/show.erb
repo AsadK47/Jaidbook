@@ -3,7 +3,7 @@
       <% if @user.avatar.attached? %>
         <%= image_tag @user.avatar.variant(resize: "75x75!"), class: "tar rounded-circle" %>
       <% else %>
-        <%= image_tag gravatar_image_url(post.user.email, size: 75), height: 75, width: 75, class: "tar rounded-circle" %>
+        <%= image_tag gravatar_image_url(@user.email, size: 75), height: 75, width: 75, class: "tar rounded-circle" %>
       <% end %>
       <%= @user.email%>
     </h1>
@@ -105,7 +105,7 @@
             <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
           </div>
         <% end %>
-<% end %>
+      <% end %>
   <% if i == 0 %>
   <div class='each-post'>
     <h3>Dude...where's my post?</h3>
