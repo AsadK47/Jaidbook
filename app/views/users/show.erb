@@ -1,5 +1,13 @@
 <div class='user-info'>
-  <h1 class='title'><%= @user.email%></h1>
+    <h1 class="title">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar.variant(resize: "75x75!"), class: "tar rounded-circle" %>
+      <% else %>
+        <%= image_tag gravatar_image_url(post.user.email, size: 75), height: 75, width: 75, class: "tar rounded-circle" %>
+      <% end %>
+      <%= @user.email%>
+    </h1>
+
     <div class='user-buttons'>
       <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
@@ -16,7 +24,7 @@
   <i class="fa fa-tv"></i>
   POSTS
 </a>
-<a class="tab" href="">
+<a class="tab" href="/users/all">
   <i class="fa fa-bookmark"></i>
   FRIENDS
 </a>
@@ -66,7 +74,7 @@
 
   <div class='logic'>
       <h3>Friends</h3>
-    <% if @freinds != nil %>
+    <% if @friends != nil %>
       <% @friends.each do |friend| %>
           <div class='each-post'>
             <h3><%= friend.email %></h3>
@@ -85,17 +93,29 @@
 
   <div class='logic'>
     <h3>Wall</h3>
-  <% if @posts != nil %>
+    <% i = 0 %>
+
       <% @allposts.each do |post| %>
         <% if post.posted_to == "#{@user.id}" %>
-        <div class='each-post'>
-          <h3><%= post.title %></h3>
-          <p><%= truncate(post.body) %></p>
-          <p><%= post.email %> at <%= post.created_at %></p>
-          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-        </div>
+        <% i += 1 %>
+          <div class='each-post'>
+            <h3><%= post.title %></h3>
+            <p><%= truncate(post.body) %></p>
+            <p><%= post.email %> at <%= post.created_at %></p>
+            <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+          </div>
         <% end %>
-    <% end %>
+<% end %>
+  <% if i == 0 %>
+  <div class='each-post'>
+    <h3>Dude...where's my post?</h3>
+  </div>
   <% end %>
   </div>
 </div>
+
+<style>
+  .tar {
+    margin-right: 5px;
+  }
+</style>
