@@ -313,11 +313,8 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
-  friend_feature
   acts_as_follower!
-
   aws-sdk-s3
-  master
   bootsnap (>= 1.1.0)
   byebug
   cancan
