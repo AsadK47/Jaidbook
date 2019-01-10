@@ -10,7 +10,9 @@
 
 <h2><%= @post.title %></h2>
 <p><%= @post.body %></p>
-
+<% if @post.image.attached? %>
+  <%= image_tag url_for(@post.image) %>
+<% end %>
 <p>Posted by: <%= @post.email %></p>
 
 <hr>
