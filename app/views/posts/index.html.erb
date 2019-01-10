@@ -1,3 +1,4 @@
+
 <h1 class='title'>All Posts</h1>
 <% @posts.each do |post| %>
     <div class='each-post'>
@@ -18,29 +19,3 @@
         </div>
     </div>
 <% end %>
-
-
-<style>
-  h3.title {
-    font-family: arial;
-    color: #343a40;
-    font-weight: bold;
-  }
-    div.each-post {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px;
-      padding: 40px;
-      border-radius: 10px;
-      background-color: lightgrey;
-      padding: 20px;
-    }
-
-    p {
-      font-family: arial;
-      color: #343a40;
-    }
-
-  </style>

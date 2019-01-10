@@ -44,7 +44,7 @@
     <% end %>
   <% end %>
   </div>
-  
+
 <div class ='profile-container'>
   <div class='logic'>
     <h3>Posts</h3>
@@ -53,7 +53,7 @@
         <div class='each-post'>
           <h3><%= post.title %></h3>
           <p><%= truncate(post.body) %></p>
-          <p><%= post.email %> at <%= post.created_at %></p>
+          <p><%= post.created_at %></p>
           <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
         </div>
     <% end %>
