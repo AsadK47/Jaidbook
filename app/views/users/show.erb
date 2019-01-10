@@ -9,9 +9,18 @@
     </h1>
 
     <div class='user-buttons'>
-      <% if current_user.id == @user.id %>
-      <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
+    <% if current_user.id == @user.id %>
+        <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
+      <% elsif current_user.id != @user.id %>
+        <% if @user.followed_by?(current_user) %>
+            <h3>Following</h3>
+        <% else%>
+            <%= form_tag follows_path(user_id: @user.id), method: :post, remote: true do  %>
+            <%= button_tag 'Follow', :class => 'btn btn-success' %>
+            <input type="hidden" name="followed_email" value="<%= @user.email %>" />
+        <% end %>
       <% end %>
+    <% end %>
     </div>
 
 </div>
@@ -73,22 +82,25 @@
   </div>
 
   <div class='logic'>
-      <h3>Friends</h3>
-    <% if @friends != nil %>
-      <% @friends.each do |friend| %>
-          <div class='each-post'>
-            <h3><%= friend.email %></h3>
-            <p> Joined on <%= friend.created_at %></p>
-            <a><%= link_to "View Profile", post_path(post), :class => 'btn btn-success' %></a>
+
+      <h3>Following</h3>
+      <a <%= link_to "Add friends", users_all_path, :class => 'btn btn-success' %> </a>
+    <% if @follows != nil %>
+      <% @follows.each do |follow| %>
+        <% if follow.follower_id == @user.id %>
+        <div class='each-post'>
+          <h3><%= follow.followable_id %></h3>
+          <h3><%= follow.followed_email %></h3>
         </div>
+        <% end %>
       <% end %>
     <% else %>
     <div class='each-post'>
-      <h3>No friends yet :/</h3>
+      <h3>Not following anyone yet :/</h3>
       <br>
       <a <%= link_to "Add friends", users_all_path, :class => 'btn btn-success' %> </a>
     </div>
-    <% end %>
+      <% end %>
   </div>
 
   <div class='logic'>
