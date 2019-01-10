@@ -3,6 +3,10 @@
     <div class='user-buttons'>
       <% if current_user.id == @user.id %>
       <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
+      <% elsif current_user.id != @user.id %>
+        <%= form_tag follows_path(user_id: @user.id), method: :post, remote: true do  %>
+        <%= button_tag 'Follow', :class => 'btn btn-success' %>
+      <% end %>
       <% end %>
     </div>
 
