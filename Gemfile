@@ -10,6 +10,8 @@ gem 'devise'
 gem 'pry'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
+gem 'figaro'
+gem "aws-sdk-s3", require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -53,7 +55,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', '~> 0.61.1'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '4.0.0.rc1'
 end
 
 group :development do
