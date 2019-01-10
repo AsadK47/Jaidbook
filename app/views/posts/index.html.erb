@@ -12,6 +12,11 @@
         <div class='post-content'>
           <h3 class= 'title'><%= post.title %></h3>
           <p><%= truncate(post.body) %></p>
+          <% if post.image.attached? %>
+            <%= image_tag url_for(post.image) %>
+          <% end %>
+          <br>
+          <p><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
           <p>Posted by <%= post.email %> at <%= post.created_at %></p>
         </div>
         <div class='button'>
@@ -19,3 +24,15 @@
         </div>
     </div>
 <% end %>
+
+<style>
+
+  .red {
+    color: red;
+  }
+
+  .spaced {
+    padding-right: 5px;
+  }
+
+</style>
