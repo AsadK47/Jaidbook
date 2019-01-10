@@ -10,6 +10,9 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
 
+<% if @post.image.attached? %>
+  <%= image_tag url_for(@post.image) %>
+<% end %>
 <p>Posted at: <%= @post.created_at.to_formatted_s(:short) %></p>
 
 <hr>
