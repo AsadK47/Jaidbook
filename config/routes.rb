@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show', as: :profile
 
   resources :posts do
+    resources :likes
     resources :comments
   end
 end

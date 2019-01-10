@@ -13,18 +13,22 @@
 <% if @post.image.attached? %>
   <%= image_tag url_for(@post.image) %>
 <% end %>
+<p><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <p>Posted at: <%= @post.created_at.to_formatted_s(:short) %></p>
 
 <hr>
 <% if @post.email == current_user.email %>
-<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-default' %>
+<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-success' %>
 <%= link_to "Delete", post_path(@post),
                                       method: :delete,
                                       data: { confirm: 'Are you sure?'},
                                       :class => 'btn btn-danger' %>
+<% end %>
+<%= link_to 'Like', post_likes_path(@post),
+                                      method: :post,
+                                      :class => 'btn btn-primary '%>
 
 <hr>
-<% end %>
 <h5>Comments:</h5>
 
 <% @post.comments.each do |comment| %>
@@ -34,7 +38,8 @@
       <% if comment.user == current_user.email %>
       <%= link_to '[X]', [comment.post, comment],
                 method: :delete,
-                data: { confirm: 'Are you sure?'} %>
+                data: { confirm: 'Are you sure?'},
+                :class => 'red' %>
       <% end %>
     </i></p>
   </div>
@@ -61,4 +66,13 @@
   .tar {
     margin-right: 10px;
   }
+
+  .red {
+    color: red;
+  }
+
+  .spaced {
+    padding-right: 5px;
+  }
+
 </style>
