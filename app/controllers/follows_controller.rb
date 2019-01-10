@@ -4,10 +4,6 @@ before_action :authenticate_user!
 
   def create
     @user = User.find(params[:user_id])
-    @user.user_id = 5
-    p @user
-    p @user.user_id
-    p @user.id
     current_user.follow(@user)
     redirect_to profile_path(@user.id)
   end

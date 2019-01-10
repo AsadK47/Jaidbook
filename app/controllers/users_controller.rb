@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
     @allposts = Post.all.order('posts.created_at DESC')
+    @follows = Follow.all.order('follows.created_at DESC')
   end
 
   def find
