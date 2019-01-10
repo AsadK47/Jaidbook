@@ -24,6 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
             <li><a class="nav-link" <%= link_to "Create Post", new_post_path %> </a></li>
+            <li><a class="nav-link" <%= link_to "Users", users_all_path %> </a></li>
 
             <% if user_signed_in? %>
                 <li><a id ='user-profile' class="nav-link"<%= link_to current_user.email, profile_path(current_user.id), :class => 'navbar-link' %></a></li>
