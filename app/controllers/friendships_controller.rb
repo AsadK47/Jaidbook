@@ -8,7 +8,7 @@ class FriendshipsController < ApplicationController
   end
 
   def new
-    @friend = Friendship.new
+    @friend = Friendship.new(merge_params)
   end
 
   def create
@@ -28,4 +28,12 @@ class FriendshipsController < ApplicationController
     flash[:notice] = 'You monster.'
     redirect_to root_url
   end
+end
+
+def post_params
+  params.require(:friendship).permit(:user_id, :avatar)
+end
+
+def merge_params
+  post_params.merge(user_id: current_user.id, email: current_user.email, posted_to: params[:posted_to])
 end

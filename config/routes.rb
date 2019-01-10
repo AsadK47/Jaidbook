@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'posts#index', as: 'home'
   get 'users/all', to: 'users#index'
   get 'users/:id', to: 'users#show', as: :profile
-
+  post 'users/follow', to: 'users#follow'
   resources :posts do
     resources :comments
   end
