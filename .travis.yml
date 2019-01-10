@@ -3,7 +3,6 @@ cache:
 - bundler
 rvm:
 - 2.5.3
-
 env:
 - DB=postgresql
 script:
@@ -17,7 +16,7 @@ before_install:
 deploy:
   provider: heroku
   api_key:
-    secure: nRQfh/Tsel4hwH3oiaJ4ujjLuJdkFu4/im2Ty2SPdUtG4dJyqiE4RM5BQkfEgDiKwYrId773V87YLpRIDU+w4rv+eCGCXHB/LzSsae5K+30ZudUHPqv3D/818n9p28vv8s/yd1vySRGDlGKjeyN4b4co75UDVzcsmLAIwo1Al4NNifhIQCXNqaNFiWaLawqr7+y0fUhiyHguhO0Yxqry5cq6ndBwy7gu9vd9PLceWUxYqfWbK+mMEpenWit6x0sRKCtWMbHTuSwctX8/qOfZP3waI8+Vpu0E2bp7OSycm6P1iWNsUiU8xFx+KeOhKRg/VNLzRvn93Aeslsu94+hxI3P1O5dNWXsrfQx/Bu8S7qmThlNOFdnuITZ5PkRRsxkqCz/2IiBZT4Wjdqt/ifn/RKflaoX/Yl71kxbCxKg04eospJCz24C8Uss46uzFdO7KTzx4qbzg6Lx3E4RfVHv244QpDzls4Dzpm56AhVm9EYbjHyngs5TaIh/Ql+miZ5o+O1z+Lsin0uYk/DgYctWoHXON6TIrTAIM0XOfKu3hKtJxHs/I/m6JB4KwLRybtozudsw7oPQbO1GMSRcfol/Oy6FVtUd+vu1nhUFur0JGFOUiCxg+4Hpmu6w2QkSTjT1GVHpCeObUV7tsjZnH/n2BV3XTN9/BLk1tMRdP0odMXlQ=
+    secure: giz2sxEEeAW38X7b57DWcexuUTfda/bTSPSpW/Vh7Pluc41jaiJZmXlNEx/VcosLKwL8FBACS5CZBS+KqBZ41JfQLiheXDxZCcmM5znZXXypi6OQ2oqcPD4Jz9JN0jHJv+ig/NrFOi4a6GuEjHB7JMCQpX8q8URVpiEKoth4oEMDU7bLCTicw2p+efFjSvAr7zfG5HrboKMCI8s4O5xcKCgH3uswtuoF9Z+sCQmOi/c8rsrCJqkmN3E8Thz+fEGLCuTbqsXWsP1p1gQ0CxPGv0GVDbPPRyZ1lvisyzxoWfgrHo8a6D6duZUGQbZfDZlEJ7rYHcwE0RqjJervUCyJMfoL1NSKtxMM0jrjOAjhuYp98WNqwlNsVZAooFyI0TZMMgezR380D0pRJ7qGXNrjXx4kPnm0289MJSlMyWPd+St0RvQT7m3k6vUyk+ufpjbM5Oqa/9eUuQ+Tfn1EqiHScb7+C9QnvloxQPR1vfeNNJ71/qbNFr94D4Mlp2JLAjc1Mt+pD8QWVbG3lcEPjlZ4urhfxdyByfXjZ0ChHi89bXxoXCZaKDhxmbswi8CkFWl24UwfFGlXKniHKnMRR3TPzoS0utwf/NubnGBE6MQ+EPvzt/AjRSNnHNsGipU3pLYh17H/SJt/QQhyK0t/kwiLFpVan3vq5tnRF0QXb45vCmg=
   app: jaidbook
   on:
     repo: AsadK47/Jaidbook
