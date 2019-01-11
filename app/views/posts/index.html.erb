@@ -2,17 +2,24 @@
 <h1 class='title'>All Posts</h1>
 <% @posts.each do |post| %>
     <div class='each-post'>
+      <div class="post-info">
         <div class="avatar">
           <% if post.user.avatar.attached? %>
             <%= link_to profile_path(post.user_id) do %>
-              <%= image_tag post.user.avatar.variant(resize: "100x100!"), class: "rounded-circle" %>
+              <%= image_tag post.user.avatar.variant(resize: "75x75!"), class: "rounded-circle" %>
               <% end %>
           <% else %>
             <%= link_to profile_path(post.user_id) do %>
               <%= image_tag gravatar_image_url(post.user.email, size: 75), height: 75, width: 75, class: "rounded-circle" %>
             <% end %>
           <% end %>
+          <br><br><br>
+          <h3><%= post.email %></h3>
+          <p class='post-author'>Posted on <%= post.created_at.to_formatted_s(:short) %></p>
+          <div class='post-like'><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></div>
+
         </div>
+      </div>
           <div class='post-content'>
               <h3 class= 'title-post'><%= post.title %></h3>
             <div class='post-image-container'>
@@ -20,11 +27,11 @@
               <% if post.image.attached? %>
                 <%= image_tag url_for(post.image), class: "post-image" %>
               <% end %>
-              </div>
-            </div>
               <p class='post-body'><%= truncate(post.body, length: 500) %></p>
-              <div class='post-like'><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></div>
-              <p class='post-author'>Posted by <strong> <%= post.email %> </strong> on <%= post.created_at.to_formatted_s(:short) %></p>
+              </div>
+
+            </div>
+
               <div class='button'>
                 <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
               </div>
@@ -34,12 +41,6 @@
 
 <style>
 
-  .red {
-    color: red;
-  }
 
-  .spaced {
-    padding-right: 5px;
-  }
 
 </style>
