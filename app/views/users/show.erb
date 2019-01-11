@@ -86,7 +86,7 @@
 <div id="Following" class="tabcontent" style="display:none">
   <div class ='profile-container'>
     <div class='logic'>
-      <% if @follows != nil %>
+      <% if @follows.length < 1 %>
         <% @follows.each do |follow| %>
           <% if follow.follower_id == @user.id %>
           <div class='each-post'>
@@ -95,8 +95,8 @@
           <% end %>
         <% end %>
       <% else %>
-      <div class='each-post'>
-        <h3>Not following anyone yet :/</h3>
+      <div style='margin:auto; text-align:center'>
+        <h3>Not following anyone yet :(</h3><br>
         <a <%= link_to "Follow someone!", users_all_path, :class => 'btn btn-success' %> </a>
       </div>
         <% end %>
