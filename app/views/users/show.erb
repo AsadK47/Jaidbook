@@ -28,7 +28,7 @@
 
 <div class="user-tabs">
   <button class="tablink" onclick="openPage('Wall', this)" id="defaultOpen" style="display: block;" >WALL</button>
-  <button class="tablink" onclick="openPage('Posts', this)">POSTS</button>
+  <button id="post-id"  class="tablink" onclick="openPage('Posts', this)">POSTS</button>
   <button class="tablink" onclick="openPage('Following', this)">FOLLOWING</button>
   <% if current_user.id != @user.id %>
     <button class="tablink" onclick="openPage('PostOnWall', this)">POST ON WALL</button>

@@ -34,7 +34,6 @@ end
 
 def add_post
   visit '/posts/new'
-  expect(page).to have_content('Add Post')
   fill_in 'Title', with: 'Some title'
   fill_in 'Body', with: 'Some body'
   click_button 'Save Post'
@@ -44,7 +43,6 @@ end
 
 def add_post_2
   visit '/posts/new'
-  expect(page).to have_content('Add Post')
   fill_in 'Title', with: 'Second title'
   fill_in 'Body', with: 'Second body'
   click_button 'Save Post'
