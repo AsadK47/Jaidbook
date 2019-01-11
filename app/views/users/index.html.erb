@@ -1,9 +1,17 @@
 <h1 class='title'>All Users</h1>
 <% @users = User.all %>
 <% @users.each do |user| %>
-  <div class='each-post'>
+  <div class='each-user'>
     <h3><%= user.email %></h3>
-    <p>Joind on: <%= user.created_at %></p>
+    <p>Joined on: <%= user.created_at.to_formatted_s(:short) %></p>
     <a><%= link_to "View Profile", profile_path(user.id), :class => 'btn btn-info' %></a>
   </div>
 <% end %>
+
+<style>
+  .each-user {
+    text-align: center;
+    margin-bottom: 50px;
+
+  }
+</style>

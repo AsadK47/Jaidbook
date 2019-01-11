@@ -4,12 +4,28 @@
 div.profile-post {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  margin: 0px;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
   padding: 40px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px dashed grey;
   width: 700px;
 }
+
+#PostOnWall {
+  width: 650px;
+  margin: auto;
+}
+
+#Posts {
+  align-items: center;
+}
+
+.read-btn {
+  width: 100px;
+  margin: auto;
+}
+
 .user-info {
   display: flex;
   flex-direction: column;
@@ -19,6 +35,8 @@ div.profile-post {
   padding-bottom: 40px;
 }
 .profile-container {
+  max-width: 1000px;
+  align-items: center;
   display: flex;
   flex-direction: column;
   }

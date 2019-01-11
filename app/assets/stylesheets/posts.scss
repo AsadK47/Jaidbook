@@ -21,6 +21,7 @@ div.each-post {
 }
 .avatar {
   display: flex;
+  float: right;
   flex-direction: row;
   padding: 10px;
 }
@@ -55,4 +56,3 @@ p {
 .spaced {
   padding-right: 5px;
 }
-
