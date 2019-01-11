@@ -1,3 +1,5 @@
+
+
 <div class ="profile-info"
   <div class='user-info'>
       <h1 class="title">
@@ -25,7 +27,7 @@
 </div>
 
 <div class="user-tabs">
-  <a><button class="tablink" onclick="openPage('Wall', this)" id="defaultOpen" style="display: block;" >WALL</button></a>
+  <button class="tablink" onclick="openPage('Wall', this)" id="defaultOpen" style="display: block;" >WALL</button>
   <button class="tablink" onclick="openPage('Posts', this)">POSTS</button>
   <button class="tablink" onclick="openPage('Following', this)">FOLLOWING</button>
   <% if current_user.id != @user.id %>
@@ -33,7 +35,7 @@
   <% end %>
 </div>
 
-<div id="Wall" class="tabcontent">
+<div id="Wall" class="tabcontent" style="display:block">
   <div class='logic'>
     <% i = 0 %>
       <% @allposts.each do |post| %>
@@ -56,63 +58,10 @@
 </div>
 </div>
 
-<div id="Following" class="tabcontent">
-  <div class ='profile-container'>
-    <div class='logic'>
-      <% if @follows != nil %>
-        <% @follows.each do |follow| %>
-          <% if follow.follower_id == @user.id %>
-          <div class='each-post'>
-            <h3><%= follow.followable.email %></h3>
-          </div>
-          <% end %>
-        <% end %>
-      <% else %>
-      <div class='each-post'>
-        <h3>Not following anyone yet :/</h3>
-        <a <%= link_to "Follow someone!", users_all_path, :class => 'btn btn-success' %> </a>
-      </div>
-        <% end %>
-    </div>
-  </div>
-</div>
-
-<div id="Posts" class="tabcontent">
-  <div class ='profile-container'>
-    <div class='logic'>
-    <% if @posts != nil %>
-      <% @posts.each do |post| %>
-          <div class='profile-post'>
-            <div class="avatar" id='profile-avatar'>
-              <% if post.user.avatar.attached? %>
-                <%= link_to profile_path(post.user_id) do %>
-                  <%= image_tag post.user.avatar.variant(resize: "100x100!"), class: "rounded-circle" %>
-                  <% end %>
-              <% else %>
-                <%= link_to profile_path(post.user_id) do %>
-                  <%= image_tag gravatar_image_url(post.user.email, size: 50), height: 50, width: 50, class: "rounded-circle" %>
-                <% end %>
-              <% end %>
-              <h3><%= post.title %></h3>
-            </div>
-            <p><%= truncate(post.body) %></p>
-            <p><%= post.created_at %></p>
-            <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-          </div>
-      <% end %>
-    <% else %>
-      <h2>No posts yet :/</h2>
-      <br>
-      <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
-    <% end %>
-  </div>
-</div>
-
-
-<div id="PostonWall" class="tabcontent">
+<div id="PostOnWall" class="tabcontent" style="display:none">
 <% if current_user.id != @user.id %>
-  <div class='each-post'>
-    <h3>Post on your friend's wall:</h3>
+  <div class=''>
+    <h3 style="text-align:center">Post on your friend's wall:</h3>
     <br>
     <%= form_for :post, url: posts_path do |f| %>
     <p>
@@ -134,10 +83,45 @@
   </div>
 </div>
 
+<div id="Following" class="tabcontent" style="display:none">
+  <div class ='profile-container'>
+    <div class='logic'>
+      <% if @follows != nil %>
+        <% @follows.each do |follow| %>
+          <% if follow.follower_id == @user.id %>
+          <div class='each-post'>
+            <h3><%= follow.followable.email %></h3>
+          </div>
+          <% end %>
+        <% end %>
+      <% else %>
+      <div class='each-post'>
+        <h3>Not following anyone yet :/</h3>
+        <a <%= link_to "Follow someone!", users_all_path, :class => 'btn btn-success' %> </a>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
 
+<div id="Posts" class="tabcontent" style="display:none">
+  <!-- <div class ='profile-container'> -->
+    <div class='logic'>
+    <% if @posts != nil %>
+      <% @posts.each do |post| %>
+          <div class='profile-post'>
+            <h3><%= post.title %></h3>
+            <p><%= truncate(post.body) %></p>
+            <p><%= post.created_at %></p>
+            <a><%= link_to "Read More", post_path(post), :class => 'read-btn btn btn-info' %></a>
+          </div>
+      <% end %>
+    <% else %>
+      <h2>No posts yet :/</h2>
+      <br>
+      <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
+    <% end %>
+  </div>
+<!-- </div> -->
 
-<style>
-  .tar {
-    margin-right: 5px;
-  }
-</style>
+</div>
