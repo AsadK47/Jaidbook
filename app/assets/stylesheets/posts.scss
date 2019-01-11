@@ -1,12 +1,20 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.avatar-title-container  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 h3.post-title {
   font-family: arial;
   color: #343a40;
   font-weight: bold;
+  margin: 0;
+  padding: 10px;
 }
-div.each-post {
+div.each-post #all-posts{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,6 +24,8 @@ div.each-post {
   border-bottom: 1px solid black ;
 }
 .avatar {
+  display: flex;
+  flex-direction: row;
   padding: 10px;
 }
 .post-content {
@@ -32,3 +42,10 @@ p {
   font-family: arial;
   color: #343a40;
   }
+    .red {
+      color: red;
+    }
+
+    .spaced {
+      padding-right: 5px;
+    }

@@ -1,44 +1,116 @@
-<div class='user-info'>
-    <h1 class="title">
-      <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar.variant(resize: "75x75!"), class: "tar rounded-circle" %>
-      <% else %>
-        <%= image_tag gravatar_image_url(@user.email, size: 75), height: 75, width: 75, class: "tar rounded-circle" %>
-      <% end %>
-      <%= @user.email%>
-    </h1>
-
-    <div class='user-buttons'>
-    <% if current_user.id == @user.id %>
-        <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
-      <% elsif current_user.id != @user.id %>
-        <% if @user.followed_by?(current_user) %>
-            <h3>Following</h3>
-        <% else%>
-            <%= form_tag follows_path(user_id: @user.id), method: :post, remote: true do  %>
-            <%= button_tag 'Follow', :class => 'btn btn-success' %>
-            <input type="hidden" name="followed_email" value="<%= @user.email %>" />
+<div class ="profile-info"
+  <div class='user-info'>
+      <h1 class="title">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize: "75x75!"), class: "tar rounded-circle" %>
+        <% else %>
+          <%= image_tag gravatar_image_url(@user.email, size: 75), height: 75, width: 75, class: "tar rounded-circle" %>
+        <% end %>
+        <%= @user.email%>
+      </h1>
+      <div class='user-buttons'>
+      <% if current_user.id == @user.id %>
+          <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
+        <% elsif current_user.id != @user.id %>
+          <% if @user.followed_by?(current_user) %>
+              <h3>Following</h3>
+          <% else%>
+              <%= form_tag follows_path(user_id: @user.id), method: :post, remote: true do  %>
+              <%= button_tag 'Follow', :class => 'btn btn-success' %>
+              <input type="hidden" name="followed_email" value="<%= @user.email %>" />
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-    </div>
+      </div>
+  </div>
 </div>
 
 <div class="user-tabs">
-<a class="tab active" href="">
-  <i class="fa fa-th"></i>
-  WALL
-</a>
-<a class="tab" href="">
-  <i class="fa fa-tv"></i>
-  POSTS
-</a>
-<a class="tab" href="/users/all">
-  <i class="fa fa-bookmark"></i>
-  FRIENDS
-</a>
+  <a><button class="tablink" onclick="openPage('Wall', this)" id="defaultOpen" style="display: block;" >WALL</button></a>
+  <button class="tablink" onclick="openPage('Posts', this)">POSTS</button>
+  <button class="tablink" onclick="openPage('Following', this)">FOLLOWING</button>
+  <% if current_user.id != @user.id %>
+    <button class="tablink" onclick="openPage('PostOnWall', this)">POST ON WALL</button>
+  <% end %>
 </div>
 
+<div id="Wall" class="tabcontent">
+  <div class='logic'>
+    <% i = 0 %>
+      <% @allposts.each do |post| %>
+        <% if post.posted_to == "#{@user.id}" %>
+        <% i += 1 %>
+          <div class='each-post'>
+            <h3><%= post.title %></h3>
+            <p><%= truncate(post.body) %></p>
+            <p><%= post.email %> at <%= post.created_at %></p>
+            <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+          </div>
+        <% end %>
+      <% end %>
+  <% if i == 0 %>
+  <div class='each-post'>
+    <h3>Dude...where's my post?</h3>
+  </div>
+  <% end %>
+  </div>
+</div>
+</div>
+
+<div id="Following" class="tabcontent">
+  <div class ='profile-container'>
+    <div class='logic'>
+      <% if @follows != nil %>
+        <% @follows.each do |follow| %>
+          <% if follow.follower_id == @user.id %>
+          <div class='each-post'>
+            <h3><%= follow.followable.email %></h3>
+          </div>
+          <% end %>
+        <% end %>
+      <% else %>
+      <div class='each-post'>
+        <h3>Not following anyone yet :/</h3>
+        <a <%= link_to "Follow someone!", users_all_path, :class => 'btn btn-success' %> </a>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="Posts" class="tabcontent">
+  <div class ='profile-container'>
+    <div class='logic'>
+    <% if @posts != nil %>
+      <% @posts.each do |post| %>
+          <div class='each-post' id='profile-posts'>
+            <div class="avatar" id='profile-avatar'>
+              <% if post.user.avatar.attached? %>
+                <%= link_to profile_path(post.user_id) do %>
+                  <%= image_tag post.user.avatar.variant(resize: "100x100!"), class: "rounded-circle" %>
+                  <% end %>
+              <% else %>
+                <%= link_to profile_path(post.user_id) do %>
+                  <%= image_tag gravatar_image_url(post.user.email, size: 50), height: 50, width: 50, class: "rounded-circle" %>
+                <% end %>
+              <% end %>
+            </div>
+            <h3><%= post.title %></h3>
+            <p><%= truncate(post.body) %></p>
+            <p><%= post.created_at %></p>
+            <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
+          </div>
+      <% end %>
+    <% else %>
+      <h2>No posts yet :/</h2>
+      <br>
+      <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
+    <% end %>
+  </div>
+</div>
+
+
+<div id="PostonWall" class="tabcontent">
 <% if current_user.id != @user.id %>
   <div class='each-post'>
     <h3>Post on your friend's wall:</h3>
@@ -61,67 +133,9 @@
     <% end %>
   <% end %>
   </div>
-
-<div class ='profile-container'>
-  <div class='logic'>
-    <h3>Posts</h3>
-  <% if @posts != nil %>
-    <% @posts.each do |post| %>
-        <div class='each-post'>
-          <h3><%= post.title %></h3>
-          <p><%= truncate(post.body) %></p>
-          <p><%= post.created_at %></p>
-          <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-        </div>
-    <% end %>
-  <% else %>
-    <h2>No posts yet :/</h2>
-    <br>
-    <a class="nav-link" <%= link_to "Post something!", new_post_path %> </a>
-  <% end %>
-  </div>
-<h3><% require 'pry' %></h3>
-  <div class='logic'>
-
-      <h3>Following</h3>
-    <% if @follows != nil %>
-      <% @follows.each do |follow| %>
-        <% if follow.follower_id == @user.id %>
-        <div class='each-post'>
-          <h3><%= follow.followable.email %></h3>
-        </div>
-        <% end %>
-      <% end %>
-    <% else %>
-    <div class='each-post'>
-      <h3>Not following anyone yet :/</h3>
-      <a <%= link_to "Follow someone!", users_all_path, :class => 'btn btn-success' %> </a>
-    </div>
-      <% end %>
-  </div>
-
-  <div class='logic'>
-    <h3>Wall</h3>
-    <% i = 0 %>
-
-      <% @allposts.each do |post| %>
-        <% if post.posted_to == "#{@user.id}" %>
-        <% i += 1 %>
-          <div class='each-post'>
-            <h3><%= post.title %></h3>
-            <p><%= truncate(post.body) %></p>
-            <p><%= post.email %> at <%= post.created_at %></p>
-            <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>
-          </div>
-        <% end %>
-      <% end %>
-  <% if i == 0 %>
-  <div class='each-post'>
-    <h3>Dude...where's my post?</h3>
-  </div>
-  <% end %>
-  </div>
 </div>
+
+
 
 <style>
   .tar {

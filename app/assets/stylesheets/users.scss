@@ -2,6 +2,45 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+.user-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+.tablink {
+  margin: 10px;
+  font-family: arial;
+  font-size: 20px;
+  color: #3ca868;
+  font-weight: lighter;
+  border: none;
+  text-align: center;
+}
+div.each-post #profile-posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin: 0px;
+  padding: 40px;
+  border-bottom: 1px solid black ;
+}
+.avatar #profile-avatar{
+  padding: 10px;
+}
+.post-content {
+  padding: 30px;
+}
+
     h1.title {
       font-family: arial;
       font-size: 50px;
@@ -28,8 +67,7 @@
     }
       .profile-container {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
       }
       h1.title {
         font-family: arial;
@@ -51,5 +89,3 @@
         align-items: center;
         flex-direction: column;
       }
-
-      

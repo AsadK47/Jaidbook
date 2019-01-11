@@ -1,7 +1,8 @@
 
 <h1 class='title'>All Posts</h1>
 <% @posts.each do |post| %>
-    <div class='each-post'>
+    <div class='each-post' id="all-posts">
+      <div class="avatar-title-container">
         <div class="avatar">
           <% if post.user.avatar.attached? %>
             <%= link_to profile_path(post.user_id) do %>
@@ -12,9 +13,10 @@
               <%= image_tag gravatar_image_url(post.user.email, size: 75), height: 75, width: 75, class: "rounded-circle" %>
             <% end %>
           <% end %>
+          </div>
+          <h3 class= 'title-post'><%= post.title %></h3>
         </div>
           <div class='post-content'>
-              <h3 class= 'title-post'><%= post.title %></h3>
             <div class='post-image-container'>
               <div class='inner-image-container'>
               <% if post.image.attached? %>
@@ -31,15 +33,3 @@
         </div>
       </div>
 <% end %>
-
-<style>
-
-  .red {
-    color: red;
-  }
-
-  .spaced {
-    padding-right: 5px;
-  }
-
-</style>
