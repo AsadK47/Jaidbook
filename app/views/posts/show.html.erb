@@ -11,7 +11,7 @@
 <p><%= @post.body %></p>
 
 <% if @post.image.attached? %>
-  <%= image_tag url_for(@post.image) %>
+  <%= image_tag url_for(@post.image), class: "image-size" %>
 <% end %>
 <p><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <p>Posted on: <%= @post.created_at.to_formatted_s(:short) %> </p>
@@ -73,6 +73,10 @@
 
   .spaced {
     padding-right: 5px;
+  }
+
+  .image-size {
+    max-width: 100%;
   }
 
 </style>
