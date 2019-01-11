@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_01_10_144523) do
     t.boolean "blocked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fieldname"
     t.string "followed_email"
     t.index ["followable_id", "followable_type"], name: "fk_followables"
     t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"

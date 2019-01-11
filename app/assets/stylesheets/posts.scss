@@ -7,15 +7,14 @@ h3.title {
   font-weight: bold;
 }
 div.each-post {
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
-  // align-items: center;
-  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+  margin: 0px;
   padding: 40px;
   border-radius: 10px;
   background-color: lightgrey;
-  padding: 20px;
 }
 p {
   font-family: arial;
