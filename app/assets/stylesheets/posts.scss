@@ -21,6 +21,13 @@ div.each-post {
 .post-content {
   padding: 10px;
 }
+.post-image-container {
+  display: flex;
+}
+.post-image {
+  padding: 20px;
+
+}
 p {
   font-family: arial;
   color: #343a40;

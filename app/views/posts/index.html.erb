@@ -15,10 +15,14 @@
         </div>
           <div class='post-content'>
               <h3 class= 'title-post'><%= post.title %></h3>
-              <p class='post-body'><%= post.body %></p>
+            <div class='post-image-container'>
+              <div class='inner-image-container'>
               <% if post.image.attached? %>
-                <%= image_tag url_for(post.image) %>
+                <%= image_tag url_for(post.image), class: "post-image" %>
               <% end %>
+              </div>
+            </div>
+              <p class='post-body'><%= truncate(post.body, length: 500) %></p>
               <div class='post-like'><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></div>
               <p class='post-author'>Posted by <strong> <%= post.email %> </strong> on <%= post.created_at.to_formatted_s(:short) %></p>
               <div class='button'>
