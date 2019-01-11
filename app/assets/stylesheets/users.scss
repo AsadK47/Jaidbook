@@ -39,6 +39,7 @@ div.profile-post {
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin: auto;
   }
 .profile-info {
   display: flex;
@@ -68,6 +69,11 @@ div.profile-post {
 }
 .post-content {
   padding: 30px;
+}
+
+.center-me {
+  margin: auto;
+  align-items: center;
 }
 
     h1.title {
