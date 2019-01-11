@@ -17,11 +17,9 @@
           <h3><%= post.email %></h3>
           <p class='post-author'>Posted on <%= post.created_at.to_formatted_s(:short) %></p>
           <div class='post-like'><i class="spaced red fa fa-heart" aria-hidden="true"></i><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></div>
-
         </div>
       </div>
           <div class='post-content'>
-              <h3 class= 'title-post'><%= post.title %></h3>
             <div class='post-image-container'>
               <div class='inner-image-container'>
               <% if post.image.attached? %>
@@ -39,8 +37,10 @@
       </div>
 <% end %>
 
+
 <style>
 
 
 
 </style>
+
