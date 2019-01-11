@@ -13,14 +13,13 @@
           <a <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-info' %></a>
         <% elsif current_user.id != @user.id %>
           <% if @user.followed_by?(current_user) %>
-              <h3>Following</h3>
-          <% else%>
+            <%= form_tag follow_path(user_id: @user.id), method: :delete, remote: true do  %>
+            <%= button_tag 'Unfollow', :class => 'btn btn-danger' %><% end %>
+          <% else %>
               <%= form_tag follows_path(user_id: @user.id), method: :post, remote: true do  %>
-              <%= button_tag 'Follow', :class => 'btn btn-success' %>
-              <input type="hidden" name="followed_email" value="<%= @user.email %>" />
+              <%= button_tag 'Follow', :class => 'btn btn-success' %><% end %>
           <% end %>
         <% end %>
-      <% end %>
       </div>
   </div>
 </div>
@@ -40,7 +39,7 @@
       <% @allposts.each do |post| %>
         <% if post.posted_to == "#{@user.id}" %>
         <% i += 1 %>
-          <div class='each-post'>
+          <div class='each-post' id="profile-posts">
             <h3><%= post.title %></h3>
             <p><%= truncate(post.body) %></p>
             <p><%= post.email %> at <%= post.created_at %></p>
@@ -83,7 +82,7 @@
     <div class='logic'>
     <% if @posts != nil %>
       <% @posts.each do |post| %>
-          <div class='each-post' id='profile-posts'>
+          <div class='profile-post'>
             <div class="avatar" id='profile-avatar'>
               <% if post.user.avatar.attached? %>
                 <%= link_to profile_path(post.user_id) do %>
@@ -94,8 +93,8 @@
                   <%= image_tag gravatar_image_url(post.user.email, size: 50), height: 50, width: 50, class: "rounded-circle" %>
                 <% end %>
               <% end %>
+              <h3><%= post.title %></h3>
             </div>
-            <h3><%= post.title %></h3>
             <p><%= truncate(post.body) %></p>
             <p><%= post.created_at %></p>
             <a><%= link_to "Read More", post_path(post), :class => 'btn btn-info' %></a>

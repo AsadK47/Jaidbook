@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'users/all', to: 'users#index'
   get 'users/:id', to: 'users#show', as: :profile
   post 'users/follow', to: 'users#follow'
+  delete 'users/unfollow', to: 'users#follow'
   resources :posts do
     resources :likes
     resources :comments

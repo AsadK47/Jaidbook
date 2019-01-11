@@ -12,5 +12,6 @@ class FollowsController < ApplicationController
   def destroy
     @user = User.find(params[:user_id])
     current_user.stop_following(@user)
+    redirect_to profile_path(@user.id)
   end
 end
