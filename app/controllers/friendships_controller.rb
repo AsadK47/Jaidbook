@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FriendshipsController < ApplicationController
-
   def index
     @friends = Friendship.all
     redirect_to profile_path(user.id)

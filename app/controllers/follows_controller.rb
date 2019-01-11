@@ -1,6 +1,7 @@
-class FollowsController < ApplicationController
+# frozen_string_literal: true
 
-before_action :authenticate_user!
+class FollowsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @user = User.find(params[:user_id])

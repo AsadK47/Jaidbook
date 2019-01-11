@@ -1,5 +1,6 @@
-class LikesController < ApplicationController
+# frozen_string_literal: true
 
+class LikesController < ApplicationController
   before_action :find_post
 
   def create
@@ -20,5 +21,4 @@ class LikesController < ApplicationController
   def already_liked?
     Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
   end
-
 end

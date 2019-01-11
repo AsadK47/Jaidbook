@@ -4,14 +4,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
-gem 'acts_as_follower', github: "tcocca/acts_as_follower"
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower'
+gem 'aws-sdk-s3', require: false
 gem 'cancan'
 gem 'devise'
-gem 'pry'
+gem 'figaro'
 gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
 gem 'mini_magick', '~> 4.9', '>= 4.9.2'
-gem 'figaro'
-gem "aws-sdk-s3", require: false
+gem 'pry'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

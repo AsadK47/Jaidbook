@@ -17,10 +17,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(merge_params)
-    if @post.save && @post.posted_to != nil
+    if @post.save && !@post.posted_to.nil?
       redirect_to profile_path(@post.posted_to)
     elsif @post.save
-       redirect_to @post
+      redirect_to @post
     elsif
       render 'new'
     end
