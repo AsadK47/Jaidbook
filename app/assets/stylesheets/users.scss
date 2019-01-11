@@ -1,15 +1,14 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.each-post #profile-posts {
+div.profile-post {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: left;
+  justify-content: left;
   margin: 0px;
   padding: 40px;
   border-bottom: 1px solid black;
-  width: 400px;
+  width: 700px;
 }
 .user-info {
   display: flex;
@@ -19,9 +18,9 @@ div.each-post #profile-posts {
   padding: 20px;
   padding-bottom: 40px;
 }
-  .profile-container {
-    display: flex;
-    flex-direction: column;
+.profile-container {
+  display: flex;
+  flex-direction: column;
   }
 .profile-info {
   display: flex;
@@ -29,6 +28,7 @@ div.each-post #profile-posts {
   align-items: center;
   justify-content: center;
   padding: 50px;
+  padding-bottom: 0;
 }
 .user-tabs {
   display: flex;
@@ -45,7 +45,6 @@ div.each-post #profile-posts {
   border: none;
   text-align: center;
 }
-
 .avatar #profile-avatar{
   padding: 10px;
 }
